@@ -1,0 +1,30 @@
+import ConnectDB from "@/lib/ConnectDB";
+import { NextRequest, NextResponse } from "next/server";
+export const  POST= async(req, res) =>{
+
+ if(req.method === 'POST'){
+  try {
+    const db = await ConnectDB()
+     const usersCollection = db.collection('users');
+    
+
+    const body = await req.json();
+      const { name, image, email, password } = body;
+      console.log(body)
+ 
+     const newUser = { name,image, email, password }; // NEVER store passwords in plain text!
+ 
+     const result = await usersCollection.insertOne(newUser);
+ 
+     
+     return NextResponse.json({ message: "User registered.",result }, { status: 201 });
+   } catch (error) {
+     console.error(error);
+     res.status(500).json({ message: 'Error registering user' });
+   }
+  }else {
+    return NextResponse.methodNotAllowed();
+  }
+}
+
+
