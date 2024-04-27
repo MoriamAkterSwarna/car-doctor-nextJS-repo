@@ -20,7 +20,7 @@ const Service = async() => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
-                data.map(service => <ServiceCard
+              data &&   data?.map(service => <ServiceCard
                     key={service._id}
                     service={service}
                 ></ServiceCard>)

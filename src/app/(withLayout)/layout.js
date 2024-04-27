@@ -1,11 +1,12 @@
 
-
+import Footer from "@/components/shared/Footer";
+import Navbar from "@/components/shared/navbar";
 const layout = ({children}) => {
     return (
         <div>
-            <h1>Header</h1>
+           <Navbar/>
             {children}
-            <h1>Footer</h1>
+            <Footer></Footer>
         </div>
     );
 };

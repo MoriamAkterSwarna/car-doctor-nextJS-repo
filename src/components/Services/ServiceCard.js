@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ServiceCard = ({service}) => {
-
+ console.log(service)
     const { _id, title, img, price } = service;
     return (
+        <Link href={`/service/${_id}`}>
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
                 <Image width={200} height={200} src={img} alt="Shoes" className="rounded-xl" />
@@ -19,6 +20,7 @@ const ServiceCard = ({service}) => {
                 </div>
             </div>
         </div>
+        </Link>
     );
  
 };
