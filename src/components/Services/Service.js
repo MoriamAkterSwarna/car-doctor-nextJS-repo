@@ -1,13 +1,16 @@
+import { getAllServices } from "@/utils/getAllServices";
 import ServiceCard from "./ServiceCard";
 
 
 const Service = async() => {
-    const res = await fetch('http://localhost:3000/api/services');
-    const result = await res.json()
-    console.log(result.result )
+    // const res = await fetch('http://localhost:3000/api/services');
+    // const result = await res.json()
+    // console.log(result )
+    // console.log(result.result )
 
-    const {result:data } = result
-
+    // const {result:data } = result
+    const data = await getAllServices();
+    console.log(data)
  
     
      return (

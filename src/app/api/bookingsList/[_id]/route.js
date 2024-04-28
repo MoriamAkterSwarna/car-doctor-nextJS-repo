@@ -66,3 +66,20 @@ export const PATCH = async (request, { params }) => {
     );
   }
 };
+
+
+export const GET = async (request, { params }) => {
+  const db = await ConnectDB();
+  const bookingsCollection = db.collection("bookServices");
+
+  const { _id } = params;
+  console.log(_id);
+  try {
+    const result = await bookingsCollection.findOne({_id: new ObjectId(_id)});
+    console.log(result);
+    return NextResponse.json({message: "Single Booking retrieved successfully", result}, { status: 200 });
+  }
+  catch (error) {
+    return NextResponse.json({ message: "Error fetching service" }, { status: 500 });
+  }
+}

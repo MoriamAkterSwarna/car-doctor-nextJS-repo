@@ -11,7 +11,7 @@ export const  GET= async(req, res) =>{
         const serviceCollection = db.collection('services');
     
         const result = await serviceCollection.find().toArray();
- 
+     console.log(result)
      
      return NextResponse.json({ message: "Services retrieved successfully.",result }, { status: 201 });
    } catch (error) {

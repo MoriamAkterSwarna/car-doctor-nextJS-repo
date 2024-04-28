@@ -1,11 +1,9 @@
-"use client"
+
 import Image from "next/image";
 import { FaRegEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import UpdateBookingModal from "./UpdateBookingModal";
-import { useState } from "react";
+import { MdDelete } from "react-icons/md"
+import Link from "next/link";
 const MyBookingsRow = ({ booking }) => {
-    const [open, setOpen] = useState(false)
   const { _id, date, service, price, img } = booking;
 
   const handleDelete = async (id) => {
@@ -39,28 +37,13 @@ const MyBookingsRow = ({ booking }) => {
       <td>{date}</td>
       <td>${price}</td>
       <td>
-        <button
-          onClick={() => document.getElementById("my_modal_1").showModal()}
-        >
+        <Link href={`/updateBooking/${_id}`}  >
+        
           <FaRegEdit className="h-8 w-8 font-bold" />
-        </button>
+        </Link>
 
-        <dialog id="my_modal_1" className="modal">
-             
-             <div className="modal-box w-11/12 max-w-5xl">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Click the button below to close</p>
-    <div className="modal-action">
-      <form >
-       asafg
-        <button className="btn">Close</button>
-      </form>
-     
-    </div>
-  </div>
-
-
-        </dialog>
+        
+              
       </td>
 
       <td>

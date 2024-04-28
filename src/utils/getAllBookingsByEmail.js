@@ -5,7 +5,9 @@
 export const getAllBookingsByEmail = async (email) => {
     
 
-  const res = await fetch(`http://localhost:3000/api/bookingsList?email=${email}`);
+  const res = await fetch(`http://localhost:3000/api/bookingsList?email=${email}`,{
+    cache: 'no-store'
+  });
 
   
   const data = await res.json();

@@ -7,36 +7,20 @@ import MyBookingsRow from "./MyBookingsRow";
 
 const MyAllBookings =  () => {
     const session = useSession();
-    const [data, setData] = useState(null);
+    const [bookingData, setBookingData] = useState([]);
 console.log(session)
 
-// const handleMyBookings = (session) => {
-//     if(session){
-//         getAllBookingsByEmail(session?.data?.user?.email).then(res => {
-//             console.log(res);
-//         });
-       
-//     }
-// }
-// handleMyBookings(session)
-// console.log(data)
-    // // const data = await getAllBookingsByEmail(session?.data?.user?.email);
-    // const data = await getAllBookingsByEmail(user?.email);
-    // console.log(data);
-
-    
-    // const [data, setData] = useState(null);
 
     useEffect(() => {
       if (session?.data?.user?.email) {
         getAllBookingsByEmail(session?.data?.user?.email).then(dt => {
-          setData(dt);
-          console.log(data);
+          setBookingData(dt);
+          console.log(bookingData);
         });
       }
-    }, [session?.data?.user, data]);
+    }, [session?.data?.user?.email]);
 
-    console.log(data)
+    console.log(bookingData);
     return (
         <div>
             <h1>My All Bookings</h1>
@@ -53,7 +37,7 @@ console.log(session)
                         </tr>
                     </thead>
                     <tbody>
-                        { data && data?.map((booking, index) => (
+                        { bookingData && bookingData?.map((booking, index) => (
                            <MyBookingsRow key={booking.id} booking={booking}></MyBookingsRow>
                         ))}
                     </tbody>

@@ -13,7 +13,7 @@ export const GET = async (req, {params}) => {
     
     const { _id } = params; 
   
-    // console.log(_id)
+    console.log(_id)
     try {
        
   
