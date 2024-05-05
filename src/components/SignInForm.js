@@ -5,12 +5,12 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import SocialLogin from "./shared/SocialLogin";
 
-
+import { useRouter } from "next/navigation";
 const SignInForm = () => {
     const session = useSession()
     console.log(session, 'sign in')
 
-
+   const router = useRouter();
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,15 +25,30 @@ const handleSubmit = async (e) => {
         email: users?.email,
         password: users?.password,
         
-    })
-        if ( await (res.error)) {
-       
-            // console.error(result.error);
+    }).then(result => {
+        console.log(result)
+        if (result.error) {
             toast.error("Use a valid email and password to sign in!")
         } else {
-           
             toast.success("User Signed In successfully!")
+            
         }
+    
+    }) 
+
+    if( session?.data?.user &&  session?.status === 'authenticated'){
+        router.push('/')
+    }
+
+
+        // if (  res.error) {
+       
+        //     // console.error(result.error);
+        //     toast.error("Use a valid email and password to sign in!")
+        // } else {
+           
+        //     toast.success("User Signed In successfully!")
+        // }
  
   
     
@@ -54,13 +69,13 @@ if(session?.status === 'loading'){
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input type="text" name="email" placeholder="Your email" className="input input-bordered" />
+                <input type="email" name="email"  placeholder="Your email" className="input input-bordered" />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input type="text" name="password" placeholder="password" className="input input-bordered" />
+                <input type="password" name="password" placeholder="password" className="input input-bordered" />
                 
               </div>
               <div className="form-control mt-6">

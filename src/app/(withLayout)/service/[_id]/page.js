@@ -1,3 +1,4 @@
+import PrivateRoute from "@/components/PrivateRoute";
 import { getSingleService } from "@/utils/getSingleService";
 import Link from "next/link";
 
@@ -9,7 +10,8 @@ const SingleService = async ({ params }) => {
  console.log(dt)
 
   return (
-    <div>
+    <PrivateRoute>
+      <div>
       <h1>Service Page</h1>
       {/* <p>{dt.title}</p>
       <p>{dt.description}</p>
@@ -17,6 +19,7 @@ const SingleService = async ({ params }) => {
 
       <Link href={`/checkout/${_id}`}><button className="btn btn-info">Check out</button></Link>
     </div>
+    </PrivateRoute>
   );
 };
 

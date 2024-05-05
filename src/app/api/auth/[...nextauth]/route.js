@@ -68,7 +68,7 @@ const handler = NextAuth({
         
             return user;
           } else{
-            throw new Error("User already exists");
+            return user;
           }
         } catch (error) {
           console.log(error);

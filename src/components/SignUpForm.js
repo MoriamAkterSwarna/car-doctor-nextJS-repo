@@ -78,7 +78,7 @@ const handleSubmit = async (e) => {
           // User is signed in
           toast.success("User Signed Up successfully!")
           form.reset();
-          // router.push("/");
+          router.push("/");
         }
       });
     } else {
@@ -106,25 +106,25 @@ if(session?.status === 'loading'){
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
-                <input type="text" name="name" placeholder="Your Name" defaultValue={null} className="input input-bordered" required/>
+                <input type="text" name="name" placeholder="Your Name" className="input input-bordered" required/>
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Photo</span>
                 </label>
-                <input type="text" name="photo" placeholder="Photo URL" defaultValue={null} className="input input-bordered" required/>
+                <input type="text" name="photo" placeholder="Photo URL"  className="input input-bordered" required/>
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input type="email" name="email" placeholder="Your Email" defaultValue={null} className="input input-bordered" required/>
+                <input type="email" name="email" placeholder="Your Email" className="input input-bordered" required/>
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input type="password" name="password" placeholder="Password" defaultValue={null} className="input input-bordered" required/>
+                <input type="password" name="password" placeholder="Password" className="input input-bordered" required/>
                
               </div>
               <div className="form-control mt-6">

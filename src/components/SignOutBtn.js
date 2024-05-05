@@ -3,9 +3,17 @@
 import { signOut } from "next-auth/react";
 
 const SignOutBtn = () => {
+
+    const handleSignOut = async (event) => {
+        event.preventDefault();
+        await signOut();
+    };
  return (
  <>
-<button className="btn bg-rose-400" onClick={()=>signOut()}>Sign Out</button>
+ <form onSubmit={handleSignOut}>
+
+<input className="btn bg-rose-400" type="submit" value="Sign Out" />
+ </form>
  </>
  )
 };
