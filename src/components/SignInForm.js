@@ -4,19 +4,27 @@ import { signIn, useSession} from "next-auth/react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import SocialLogin from "./shared/SocialLogin";
+import { useRouter,redirect } from "next/navigation";
 
-import { useRouter } from "next/navigation";
+
+
+
 const SignInForm = () => {
     const session = useSession()
     console.log(session, 'sign in')
 
+    
    const router = useRouter();
+
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submitted");
     const email = e.target.email.value; 
     const password = e.target.password.value;
+
+
+
 
     console.log({email, password});
     const users = {email, password}
@@ -30,25 +38,21 @@ const handleSubmit = async (e) => {
         if (result.error) {
             toast.error("Use a valid email and password to sign in!")
         } else {
-            toast.success("User Signed In successfully!")
+         
+            console.log("User Signed In successfully!")
+            redirect('/')
             
         }
     
     }) 
 
     if( session?.data?.user &&  session?.status === 'authenticated'){
-        router.push('/')
+      toast.success("User Signed In successfully!")
+      //  router.push('/')
     }
 
 
-        // if (  res.error) {
-       
-        //     // console.error(result.error);
-        //     toast.error("Use a valid email and password to sign in!")
-        // } else {
-           
-        //     toast.success("User Signed In successfully!")
-        // }
+        
  
   
     

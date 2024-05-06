@@ -10,7 +10,7 @@ const UpdateBookingPage = async({params}) => {
     console.log(data);
     return (
         <div>
-            aaflajlfjgsgsdg
+            
         <UpdateForm data={data} />
         </div>
     );

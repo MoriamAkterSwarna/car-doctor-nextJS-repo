@@ -28,8 +28,8 @@ const UpdateForm = ({ data }) => {
   };
 
   return (
-    <div>
-      <h1 className="text-4xl">Update {data?.service} Booking</h1>
+    <div className="my-10">
+      <h1 className="text-4xl text-center mb-4">Update {data?.service} Booking</h1>
       <form onSubmit={handleUpdateBooking}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="form-control">

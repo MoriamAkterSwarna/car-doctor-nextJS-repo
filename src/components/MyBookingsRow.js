@@ -18,14 +18,15 @@ const MyBookingsRow = ({ booking }) => {
       });
   };
   return (
-    <tr>
+    <tr className="border">
       <td>
         <div className="avatar">
           <div className="rounded w-24 h-24">
             {img && (
               <Image
-                width={50}
-                height={50}
+              className="w-24 h-24 rounded-full"
+                width={550}
+                height={550}
                 src={img}
                 alt="Avatar Tailwind CSS Component"
               />

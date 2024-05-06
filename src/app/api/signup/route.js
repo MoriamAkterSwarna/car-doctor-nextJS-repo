@@ -13,7 +13,10 @@ export const  POST= async(req, res) =>{
       console.log(body)
  
      const newUser = { name,image, email, password }; // NEVER store passwords in plain text!
- 
+     const user = await usersCollection.findOne({ email });
+      if (user) {
+        return NextResponse.json({ message: 'User already exists' }, { status: 400 });
+      }
      const result = await usersCollection.insertOne(newUser);
  
      

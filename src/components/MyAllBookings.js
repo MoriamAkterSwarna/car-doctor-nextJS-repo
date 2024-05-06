@@ -22,11 +22,11 @@ console.log(session)
 
     console.log(bookingData);
     return (
-        <div>
-            <h1>My All Bookings</h1>
-            <div className='w-11/12 mx-auto'>
-                <table className='w-full table-zebra bordered'>
-                    <thead>
+        <div className="my-8">
+            <h1 className="text-center font-bold text-3xl my-4">My All Bookings</h1>
+            <div className='w-11/12 mx-auto overflow-x-auto'>
+                <table className='w-full table table-zebra'>
+                    <thead className="border">
                         <tr>
                             <th>Service Image</th>
                             <th>Service Name</th>

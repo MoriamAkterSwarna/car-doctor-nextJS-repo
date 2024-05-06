@@ -54,9 +54,9 @@ const BookingForm = ({data}) => {
    
     
     return (
-        <div>
+        <div className='my-10'>
           <div className='w-11/12 mx-auto'>
-            <h2 className='text-center text-3xl'>Book Service: {data?.title} </h2>
+            <h2 className='text-center text-3xl mb-4'>Book Service: {data?.title} </h2>
             <form onSubmit={handleBookService}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="form-control">

@@ -5,6 +5,12 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import ConnectDB from "@/lib/ConnectDB";
 
 const handler = NextAuth({
+  session: {
+    strategy: 'jwt',
+    rolling: false,
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -32,14 +38,14 @@ const handler = NextAuth({
           const users = await usersCollection.findOne({ email });
           console.log(users);
 
-          if (!users || !users.password || !name || !image) {
+          if (!users || !users.password || !users.email || !users.name || !users.image) {
            return null;
           }
 
           if (users.password !== password) {
             return null;
           }
-          return user;
+          return users;
         } else {
           return null;
         }
@@ -62,7 +68,7 @@ const handler = NextAuth({
               name: user.name,
               email: user.email,
               image: user.image,
-              // Add other fields as needed (e.g., hashedPassword for future email/password login)
+              
             });
 
         
@@ -77,6 +83,8 @@ const handler = NextAuth({
 
       return user;
     },
+
+    
   },
   database: process.env.MONGODB_URI,
 });

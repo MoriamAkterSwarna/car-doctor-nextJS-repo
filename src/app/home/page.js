@@ -4,7 +4,10 @@ import Service from "@/components/Services/Service";
 
 
 
+
 const HomePage = () => {
+
+    
     return (
         <div>
             <Banner></Banner>

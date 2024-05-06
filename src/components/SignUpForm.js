@@ -5,11 +5,12 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import SocialLogin from "./shared/SocialLogin";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+
 
  
 export function SignupForm() {
-  const router = useRouter();
+
   const [error, setError] = useState("");
 const session = useSession()
 const handleSubmit = async (e) => {
@@ -26,68 +27,43 @@ const handleSubmit = async (e) => {
     return;
   }
 
-  const user = { name, email, password, image }
-
-  
- try{
-
-  const resUserExists = await fetch("api/existsUser", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email }),
-  });
-
-  const { user } = await resUserExists.json();
-
-  if (user) {
-    // setError("User already exists.");
-    toast.error("User already exists.")
-    // if(router.isReady){
-      router.push('/login')
-    // }
-    return;
-  }
+  const userData = { name, email, password, image }
 
   const result = await fetch('api/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({name, photo, email, password}),
+    body: JSON.stringify(userData),
   })
-  const data = await res.json()
-    // console.log(data)
-    if (res.ok) {
+  const data = await result.json()
+    console.log(data)
+    if (result.ok) {
     
   
       // User is registered, now sign them in
       signIn("credentials", {
         redirect: false,
-        name: user.name,
-        email: user.email,
-        image: user.image,
-        password: user.password
+        name: userData.name,
+        email: userData.email,
+        image: userData.image,
+        password: userData.password
       }).then((result) => {
         if (result?.error) {
-          // Handle error
+          
           console.error(result.error);
           toast.error("An error occurred while Sign Up")
         } else {
-          // User is signed in
+         
           toast.success("User Signed Up successfully!")
           form.reset();
-          router.push("/");
+          redirect('/login')
         }
       });
     } else {
       toast.error('Error registering user')
     }
- }catch{
 
- }
- 
  
 }
 if(session?.status === 'loading'){
