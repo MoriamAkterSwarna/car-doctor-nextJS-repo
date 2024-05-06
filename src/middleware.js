@@ -1,7 +1,6 @@
 export { default } from "next-auth/middleware"
 
 import { NextResponse } from 'next/server'
-import { getSession } from 'next-auth/react'
 import { getToken } from "next-auth/jwt"
 import { cookies } from "next/headers"
 
@@ -14,11 +13,6 @@ export async function middleware(request) {
   const token = cookies(request).get('next-auth.session-token')
   console.log(token, 'cookies token')
 
-//  const session = await  getSession({request})
-//   console.log(session, 'session inside middleware ')
-
-  // const sessionData = getServerSession()
-  // console.log("server session in middlware ", sessionData);
 
   const {pathname} = new URL(request.url) 
   console.log(pathname, 'pathname')
