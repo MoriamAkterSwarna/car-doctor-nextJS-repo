@@ -7,8 +7,6 @@ export const getAllServices = async () => {
   
     
     const data = await res.json();
-    console.log('Service data:', data);
-  
     return data.result;
     };
   
