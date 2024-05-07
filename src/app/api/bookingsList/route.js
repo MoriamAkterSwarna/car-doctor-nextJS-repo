@@ -13,7 +13,7 @@ export const GET = async (request, ) => {
     
         const email = request.nextUrl.searchParams.get("email");
   
-    console.log(email)
+   
     try {
        
         

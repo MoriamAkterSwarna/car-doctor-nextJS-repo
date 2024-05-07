@@ -10,9 +10,9 @@ export const  POST= async(req, res) =>{
 
     const body = await req.json();
       const { name, image, email, password } = body;
-      console.log(body)
+    
  
-     const newUser = { name,image, email, password }; // NEVER store passwords in plain text!
+     const newUser = { name,image, email, password }; 
      const user = await usersCollection.findOne({ email });
       if (user) {
         return NextResponse.json({ message: 'User already exists' }, { status: 400 });

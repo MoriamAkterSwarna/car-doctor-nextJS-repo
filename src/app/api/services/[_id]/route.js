@@ -3,7 +3,7 @@
 import ConnectDB from "@/lib/ConnectDB";
 import { ObjectId } from "bson";
 import { NextResponse } from "next/server";
-// New route for fetching a single service
+
 export const GET = async (req, {params}) => {
     if (req.method !== 'GET') {
         return NextResponse.json({ message: 'Method not allowed' });
@@ -13,7 +13,7 @@ export const GET = async (req, {params}) => {
     
     const { _id } = params; 
   
-    console.log(_id)
+
     try {
        
   

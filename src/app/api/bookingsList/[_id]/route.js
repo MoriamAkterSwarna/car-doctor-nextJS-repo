@@ -73,7 +73,7 @@ export const GET = async (request, { params }) => {
   const bookingsCollection = db.collection("bookServices");
 
   const { _id } = params;
-  console.log(_id);
+ 
   try {
     const result = await bookingsCollection.findOne({_id: new ObjectId(_id)});
     console.log(result);

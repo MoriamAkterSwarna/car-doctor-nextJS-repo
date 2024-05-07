@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 const SignOutBtn = () => {
     const router = useRouter()
 
-    // console.log(router, 'router')
     const handleSignOut = async (event) => {
         event.preventDefault();
         await signOut({

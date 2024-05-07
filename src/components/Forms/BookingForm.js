@@ -11,9 +11,9 @@ const BookingForm = ({data}) => {
 
    
     const session = useSession()
-    // console.log(session, 'sign in')
+   
     const handleBookService= async() =>{
-        // console.log('Book Service');
+       
         event.preventDefault();
 
         const form = event.target;
@@ -35,7 +35,7 @@ const BookingForm = ({data}) => {
             price: data?.price
         }
 
-        // console.log(booking);
+        
 
      const result = await  fetch('/api/bookService', {
             method: 'POST',

@@ -8,7 +8,7 @@ const handler = NextAuth({
   session: {
     strategy: 'jwt',
     rolling: false,
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 30 * 24 * 60 * 60,
 
   },
   providers: [
@@ -27,7 +27,7 @@ const handler = NextAuth({
       },
 
       async authorize(credentials, req) {
-        // console.log(credentials)
+        
         const { name, email, password, image } = credentials;
 
         const user = { name, email, password, image };
@@ -36,7 +36,7 @@ const handler = NextAuth({
           const db = await ConnectDB()
      const usersCollection = db.collection('users');
           const users = await usersCollection.findOne({ email });
-          console.log(users);
+          
 
           if (!users || !users.password || !users.email || !users.name || !users.image) {
            return null;

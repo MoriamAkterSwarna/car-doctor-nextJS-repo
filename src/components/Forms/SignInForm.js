@@ -3,15 +3,14 @@
 import { signIn, useSession} from "next-auth/react";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import SocialLogin from "./shared/SocialLogin";
-import { useRouter,redirect } from "next/navigation";
+import SocialLogin from "../shared/SocialLogin";
+import { useRouter } from "next/navigation";
 
 
 
 
 const SignInForm = () => {
     const session = useSession()
-    console.log(session, 'sign in')
 
     
    const router = useRouter();
@@ -19,7 +18,7 @@ const SignInForm = () => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
+   
     const email = e.target.email.value; 
     const password = e.target.password.value;
 
@@ -36,11 +35,12 @@ const handleSubmit = async (e) => {
     }).then(result => {
         console.log(result)
         if (result.error) {
-            toast.error("Use a valid email and password to sign in!")
+            console.log(result.error)
+            toast.error(result.error)
         } else {
          
             console.log("User Signed In successfully!")
-            redirect('/')
+           
             
         }
     
@@ -48,20 +48,14 @@ const handleSubmit = async (e) => {
 
     if( session?.data?.user &&  session?.status === 'authenticated'){
       toast.success("User Signed In successfully!")
-      //  router.push('/')
+       router.push('/')
     }
 
 
         
- 
-  
     
   
 }
-if(session?.status === 'loading'){
-    <span className="loading loading-dots loading-lg bg-red-500"></span>
-  }
-
 
 
  return (

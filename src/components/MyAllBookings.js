@@ -8,19 +8,18 @@ import MyBookingsRow from "./MyBookingsRow";
 const MyAllBookings =  () => {
     const session = useSession();
     const [bookingData, setBookingData] = useState([]);
-console.log(session)
+
 
 
     useEffect(() => {
       if (session?.data?.user?.email) {
         getAllBookingsByEmail(session?.data?.user?.email).then(dt => {
           setBookingData(dt);
-          console.log(bookingData);
+          
         });
       }
     }, [session?.data?.user?.email]);
 
-    console.log(bookingData);
     return (
         <div className="my-8">
             <h1 className="text-center font-bold text-3xl my-4">My All Bookings</h1>
@@ -38,7 +37,7 @@ console.log(session)
                     </thead>
                     <tbody>
                         { bookingData && bookingData?.map((booking, index) => (
-                           <MyBookingsRow key={booking.id} booking={booking}></MyBookingsRow>
+                           <MyBookingsRow key={booking.id} bookingData={bookingData} setBookingData={setBookingData} booking={booking}></MyBookingsRow>
                         ))}
                     </tbody>
                 </table>

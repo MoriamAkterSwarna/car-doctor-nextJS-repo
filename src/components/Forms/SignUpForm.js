@@ -3,9 +3,9 @@
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import SocialLogin from "./shared/SocialLogin";
+import SocialLogin from "../shared/SocialLogin";
 import { useState } from "react";
-import { redirect } from "next/navigation";
+import {  useRouter } from "next/navigation";
 
 
  
@@ -13,6 +13,7 @@ export function SignupForm() {
 
   const [error, setError] = useState("");
 const session = useSession()
+const router = useRouter()
 const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -57,7 +58,7 @@ const handleSubmit = async (e) => {
          
           toast.success("User Signed Up successfully!")
           form.reset();
-          redirect('/login')
+          router.push('/login')
         }
       });
     } else {
@@ -66,9 +67,7 @@ const handleSubmit = async (e) => {
 
  
 }
-if(session?.status === 'loading'){
-  <span className="loading loading-dots loading-lg"></span>
-}
+
   return (
 
 

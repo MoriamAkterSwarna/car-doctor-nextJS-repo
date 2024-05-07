@@ -5,13 +5,13 @@
 export const getAllBookingsByEmail = async (email) => {
     
 
-  const res = await fetch(`http://localhost:3000/api/bookingsList?email=${email}`,{
+  const res = await fetch(`https://car-doctor-pro.vercel.app/api/bookingsList?email=${email}`,{
     cache: 'no-store'
   });
 
   
   const data = await res.json();
-  console.log('Service data:', data.result);
+
 
   return data.result;
   };

@@ -10,12 +10,11 @@ export const POST = async (request) => {
         const db = await ConnectDB();
         const bookingsCollection = db.collection('bookServices');
     
-        // console.log(req.body)
-        // console.log( await (req.json)) 
+       
         const data = await request.json()
-        //    console.log( data) 
+      
         const result = await bookingsCollection.insertOne(data);
-        // console.log(result)
+ 
     
         return NextResponse.json({ message: "Service booking done successfully.",result }, { status: 201 });
       } catch (error) {

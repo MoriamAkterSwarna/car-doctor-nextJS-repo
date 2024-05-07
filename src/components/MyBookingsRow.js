@@ -3,7 +3,8 @@ import Image from "next/image";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md"
 import Link from "next/link";
-const MyBookingsRow = ({ booking }) => {
+import { toast } from "react-toastify";
+const MyBookingsRow = ({ booking,bookingData,setBookingData }) => {
   const { _id, date, service, price, img } = booking;
 
   const handleDelete = async (id) => {
@@ -14,6 +15,7 @@ const MyBookingsRow = ({ booking }) => {
       .then((data) => {
         if (data.message === "Service deleted successfully.") {
           toast.success("Service deleted successfully.");
+          setBookingData(bookingData.filter(booking => booking._id !== id));
         }
       });
   };
